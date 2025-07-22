@@ -42,7 +42,7 @@
 			};
 
 			$scope.tables = Table.all(
-				function (){
+				function (data){
 					$scope.tables = data.filter(function(table) {
 						return table.name.toLowerCase().includes('resgate');
 					});
