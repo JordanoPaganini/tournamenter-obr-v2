@@ -42,7 +42,11 @@
 			};
 
 			$scope.tables = Table.all(
-				function (){},
+				function (){
+					$scope.tables = data.filter(function(table) {
+						return table.name.toLowerCase().includes('resgate');
+					});
+				},
 				function (){
 					$modalInstance.dismiss('cancel');
 					window.alert('FALHA AO BAIXAR EQUIPES E TABELAS. REFAÇA A OPERAÇÃO.');
@@ -138,7 +142,7 @@
 				}
 
 				var modalInstance = $modal.open({
-					templateUrl: 'views/modal_select_team.html?r='+Math.random(),
+					templateUrl: 'views-resgate/modal_select_team.html?r='+Math.random(),
 					controller: 'SaveScoreController',
 					size: 'lg',
 					// windowTemplateUrl: '/views/window.html',

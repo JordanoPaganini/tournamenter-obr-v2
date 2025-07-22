@@ -23,7 +23,7 @@ var TOURNAMENTER_URL = '';
 		return $routeProvider
 
 		.when('/score', {
-			templateUrl: 'views/scorer.html'
+			templateUrl: 'views-resgate/scorer.html'
 		})
 		.otherwise({
 			redirectTo: '/score'

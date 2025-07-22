@@ -34,7 +34,7 @@ module.exports = {
       childs: [
         {
           path: '/tournamenter-obr',
-          name: 'Pontuador',
+          name: 'Pontuador - Resgate',
         },
         {
           path: '/obr-config',
@@ -71,9 +71,10 @@ module.exports = {
     TableModel.evaluateMethods.obr2017 = require('./sorters/obr2017');
     TableModel.evaluateMethods.obr2018nacional = require('./sorters/obr2018nacional');
     TableModel.evaluateMethods.obr2024 = require('./sorters/obr2024');
+    TableModel.evaluateMethods.resgate2025 = require('./sorters/obr2025resgate');
 
     // Set 'obr2024' as default sorting algorithm
-    TableModel.attributes.evaluateMethod.defaultsTo = 'obr2024';
+    TableModel.attributes.evaluateMethod.defaultsTo = 'resgate2025';
     
     // Set columns count to 6 as default, with names
     TableModel.attributes.columns.defaultsTo = 6;

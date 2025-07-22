@@ -140,7 +140,7 @@ var app = angular.module('app.scorers', [])
   }
 
   return {
-    view: 'views/rescue_scorer_2025_regional.html?r='+Math.random(),
+    view: 'views-resgate/rescue_scorer_2025_regional.html?r='+Math.random(),
     model: model,
     scorings: scorings,
     totalTime: 300,
