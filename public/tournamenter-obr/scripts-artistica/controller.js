@@ -52,6 +52,7 @@
 			$scope.pageRedirect = function (){
 				if ($scope.selected.type === 0){
 					$scope.page = 'selectTeam'
+					$scope.selectRound(0)
 				} else {
 					$scope.page = 'selectRound'
 				}
@@ -59,7 +60,6 @@
 
 			$scope.selectRound = function (round){
 				$scope.selected.round = round;
-				console.log($scope.selected.round);
 			}
 			
 			$scope.selectScore = function (score){
