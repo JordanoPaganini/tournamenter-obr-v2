@@ -37,6 +37,10 @@ module.exports = {
           name: 'Pontuador - Resgate',
         },
         {
+          path: '/tournamenter-obr/artistica.html',
+          name: 'Pontuador - Artistica',
+        },
+        {
           path: '/obr-config',
           name: 'Configurar (Importar/Exportar)',
         },
@@ -71,7 +75,8 @@ module.exports = {
     TableModel.evaluateMethods.obr2017 = require('./sorters/obr2017');
     TableModel.evaluateMethods.obr2018nacional = require('./sorters/obr2018nacional');
     TableModel.evaluateMethods.obr2024 = require('./sorters/obr2024');
-    TableModel.evaluateMethods.resgate2025 = require('./sorters/obr2025resgate');
+    TableModel.evaluateMethods.resgate2025 = require('./sorters/resgate2025');
+    TableModel.evaluateMethods.artistica2025 = require('./sorters/artistica2025');
 
     // Set 'obr2024' as default sorting algorithm
     TableModel.attributes.evaluateMethod.defaultsTo = 'resgate2025';
@@ -135,7 +140,7 @@ module.exports = {
       var currentVersion = package.version
       var newestVersion = body && body['dist-tags'] && body['dist-tags'].latest
 
-      if (newestVersion != currentVersion) {
+      if (newestVersion > currentVersion) {
         hasUpdate = newestVersion
         console.log()
         console.log('>>>>>>>>>> NOVO UPDATE PARA O tournamenter-obr')

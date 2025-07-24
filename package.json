@@ -1,7 +1,7 @@
 {
   "name": "tournamenter-obr",
-  "version": "2025.2.0",
-  "description": "Plugin da OBR Regional para o Tournamenter. Importa e exporta diretamente do Sistema olimpo.",
+  "version": "2025.2.1",
+  "description": "Plugin da OBR Regional para o Tournamenter. Sistema de pontuação, integração com o Olimpo",
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/.bin/http-server public/tournamenter-obr",

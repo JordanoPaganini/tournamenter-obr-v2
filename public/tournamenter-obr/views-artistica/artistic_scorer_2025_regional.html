@@ -1,0 +1,102 @@
+<!-- v1.01 -->
+<style>
+  .btn.disabled-fake {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+</style>
+
+<div class="container" style="text-align: center;">
+
+  <h2>OBR - Modalidade Prática: Artística</h2>
+  <br>
+
+  <div class="row">
+
+    <div class="col-md-12 col-sm-12">
+      <div class="thumbnail">
+
+          <h4 style="margin-top: 16px;">Tipo de pontuação:</h4>
+          <div class="btn-group btn-group-justified">
+            <label class="btn btn-default" ng-model="scoreData.type" btn-radio="0" select>
+              Entrevista
+            </label>
+            <label class="btn btn-default" ng-model="scoreData.type" btn-radio="1">
+              Apresentação
+            </label>
+          </div>
+          <br>
+          
+          <div ng-if="scoreData.type === 1" ng-hide="timer.data.value == 0 && scorings.total == 0">
+            <h4 style="margin-top: 16px;">Cronômetro - Tempo de apresentação:</h4>
+            <button class="btn btn-primary" ng-click="startMiddleTimer()" ng-disabled="middleTimer.running">
+              Iniciar
+            </button>
+            <button class="btn btn-warning" ng-click="stopMiddleTimer()" ng-disabled="!middleTimer.running" style="margin-left: 5px;">
+              Parar
+            </button>
+
+            <div style="background-color: #ddd; height: 10px; margin-top: 10px; width: 100%; border-radius: 5px;">
+              <div style="background-color: #4CAF50; height: 10px; border-radius: 5px;"
+                  ng-style="{'width': (middleTimer.value > middleTimer.maxTime ? 100 : (middleTimer.value / middleTimer.maxTime * 100)) + '%'}">
+              </div>
+            </div>
+            
+            <div style="margin-top: 7px; margin-bottom: 7px; font-weight: bold;">
+              {{ formatTime(middleTimer.value) }} / {{ formatTime(middleTimer.maxTime) }}
+            </div>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-show="timer.data.value == 0 && scorings.total == 0 ">
+  <div class="jumbotron">
+      <h1>Aguardando...</h1>
+      <p>Para começar a pontuar, inicie o cronômetro</p>
+      <p>Versão: Regional 2025.1</p>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-hide="timer.data.value == 0 && scorings.total == 0 ">
+  <!-- SALAS -->
+  <div class="row">
+
+    <div class="col-md-12 col-sm-12">
+
+        <div class="thumbnail">
+
+            <label style="font-size: 18px; margin-top: 4px; padding-bottom: 10px;">
+              Pontuações individuais:
+            </label>
+            <div ng-repeat="(key, val) in (scoreData.type === 0 ? scorer.model.nota.interview : scorer.model.nota.presentation)">
+              <h5><b>{{$index + 1}}º Juiz - Nota:</b></h5>
+              <div class="row" style="padding-bottom: 10px;">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <input type="number"
+                      id="juiz{{key}}"
+                      ng-model="scoreData.nota[scoreData.type === 0 ? 'interview' : 'presentation'][key]"
+                      class="form-control"
+                      step="0.1" placeholder="0,0"
+                      ng-focus="scoreData.nota[scoreData.type === 0 ? 'interview' : 'presentation'][key] === 0 ? scoreData.nota[scoreData.type === 0 ? 'interview' : 'presentation'][key] = null : null"
+                      ng-blur="adjustMax(key)">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h4 style="text-align: center;">Média Final Obtida:</h4>
+            <span class="input-group-addon">{{scorings.total}} / {{ scoreData.type === 0 ? scorer.model.interview.max_points : scorer.model.presentation.max_points }}</span>
+            <br>
+        </div>
+
+        <div style="margin-top: 28px" class="btn btn-lg btn-block navbar-btn btn-danger" ng-click="timer.stop();" ng-class="{disabled: timer.data.state == 'STOPPED'}">
+          <span class="glyphicon glyphicon-pause"></span> Parar Tempo
+        </div>
+    </div>
+  </div>
+</div>
