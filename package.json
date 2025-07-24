@@ -1,6 +1,6 @@
 {
   "name": "tournamenter-obr",
-  "version": "2025.2.1",
+  "version": "2025.2.2",
   "description": "Plugin da OBR Regional para o Tournamenter. Sistema de pontuação, integração com o Olimpo",
   "main": "index.js",
   "scripts": {

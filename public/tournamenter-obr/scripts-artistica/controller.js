@@ -21,7 +21,6 @@
 		function ($scope, $modalInstance, extra, Table){
 
 			$scope.page = 'selectTable';
-			console.log(extra.type)
 			$scope.selected = {
 				table: null,
 				round: null,

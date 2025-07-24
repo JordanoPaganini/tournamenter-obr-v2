@@ -38,7 +38,7 @@
 				time: extra.time,
 				total: extra.total,
 				doNotSave: extra.doNotSave,
-				maxTime: 480,
+				maxTime: 300,
 			};
 
 			$scope.tables = Table.all(
@@ -160,7 +160,6 @@
 
 				modalInstance.result.then(function (selected) {
 					if(doNotSave && selected && selected.score.id){
-						console.log(selected)
 						var score = selected.score;
 						var index = SCORE_WITH_TIME ? selected.round * 2 : selected.round
 						var scoreData = score.scores[index];
