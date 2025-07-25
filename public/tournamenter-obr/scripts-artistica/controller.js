@@ -34,7 +34,7 @@
 			$scope.tables = Table.all(
 				function (data){
 					$scope.tables = data.filter(function(table) {
-						return table.name.toLowerCase().includes('artistica');
+						return table.name.toLowerCase().includes('artistica') || table.name.toLowerCase().includes('artística');
 					});
 				},
 				function (){

@@ -82,8 +82,12 @@
 
 		<div class="btn-group pull-right">
 			<div class="btn btn-default"
-				ng-click="page = 'selectRound'">
+				ng-click="page = 'selectRound'" ng-hide="selected.type === 0">
 				Mudar Round
+			</div>
+			<div class="btn btn-default"
+				ng-click="page = 'selectTable'" ng-show="selected.type === 0">
+				Mudar Tabela
 			</div>
 			<div ng-hide="selected.doNotSave" class="btn btn-info"
 				ng-click="page = 'confirm'"
