@@ -4,10 +4,12 @@
 var _ = require('lodash');
 var path = require('path');
 var request = require('request')
+var fs = require('fs');
 
 var auth = app.helpers.isAuthenticated
 var package = require('./package.json')
 var SyncModule = require('./SyncModule')
+var configPath = path.join(__dirname, 'scorer-config.json');
 
 var hasUpdate = null
 
@@ -119,6 +121,21 @@ module.exports = {
     app.server.get('/',     auth, function (req, res) {
       return res.render('obr-home', { path: req.route.path, newestVersion: hasUpdate});
     })
+
+    // Creates routes to read/save number of judges for artistic modality
+    app.server.get('/api/scorer-config', auth, (req, res) => {
+      fs.readFile(configPath, 'utf8', (err, data) => {
+        if (err) return res.status(500).json({ error: 'Erro ao ler config' });
+        res.json(JSON.parse(data));
+      });
+    });
+
+    app.server.post('/api/scorer-config', auth, (req, res) => {
+      fs.writeFile(configPath, JSON.stringify(req.body, null, 2), (err) => {
+        if (err) return res.status(500).json({ error: 'Erro ao salvar config' });
+        res.status(204).send();
+      });
+    });
 
     // Init SyncModule
     SyncModule.init(app)

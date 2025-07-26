@@ -30,7 +30,27 @@
   <div class="container hide" ng-class="{hide: !loaded}">
 
     <!-- Importar equipes -->
-    <div class="col-md-6" style="margin-top: 42px" ng-controller="ImportarCtrl">
+    <div class="col-md-6" style="margin-top: 2px" ng-controller="ConfigCtrl">
+      <h2>Modalidade artística</h2>
+      <hr/>
+      <p>
+        <small style="color: rgba(0,0,0,0.6);">
+          Insira a quantidade de juízes/avaliadores para cada fase da competição
+        </small>
+      <p>
+      <label>Quantidade de Juízes para Entrevista:</label>
+      <input type="number" ng-model="config.interview.number_juizes" class="form-control" min="1" step="1">
+      <br>
+      <label>Quantidade de Juízes para Apresentação:</label>
+      <input type="number" ng-model="config.presentation.number_juizes" class="form-control" min="1" step="1">
+      <br>
+      <button 
+          type="button"
+          ng-click="salvar()"
+          class="btn btn-success btn-sm btn-block">Salvar</button>
+    </div>
+
+    <div class="col-md-6"ng-controller="ImportarCtrl">
       <h2>Importar Equipes</h2>
       <hr/>
       <p>

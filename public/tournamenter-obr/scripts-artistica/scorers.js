@@ -1,5 +1,19 @@
+var URL_CONFIG = '/api/scorer-config';
+
+var interview_judges = null;
+var presentation_judges = null;
+
+fetch(URL_CONFIG)
+  .then(response => response.json())
+  .then(config => {
+    interview_judges = config.interview.number_juizes;
+    presentation_judges = config.presentation.number_juizes;
+
+    // Carrega o número de juízes dinamicamente conforme configurado em /obr-config
+    console.log('Config carregada:', interview_judges, presentation_judges);
+  })
+
 var app = angular.module('app.scorers', [])
-  
   
 .factory('ArtisticScorer2025Regional', function (){
   var model = {
@@ -10,13 +24,13 @@ var app = angular.module('app.scorers', [])
     interview: {
       'max_time': 600, // Tempo, em segundos, maxímo de entrevista previsto em regulamento
       'max_points': 40, 
-      'number_juizes': 3,  // Define a quantidade de juízes na entrevista
+      'number_juizes': interview_judges,
     },
     presentation: {
       'max_time': 420, // Tempo, em segundos, maxímo de palco previsto em regulamento
       'max_points': 60,
       'min_presentation_time': 90, // Tempo, em segundos, mínimo de apresentação previsto em regulamento
-      'number_juizes': 8  // Defini a quantidade de juízes para a apresentação
+      'number_juizes': presentation_judges,
     },
   };
 

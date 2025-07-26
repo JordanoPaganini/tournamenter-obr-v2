@@ -31,7 +31,7 @@
 					<span class="glyphicon glyphicon-pause"></span> <span class="hidden-xs">Pausar</span>
 				</div>
 
-				<div class="btn navbar-btn btn-warning" ng-click="timer.reset();" ng-class="{disabled: timer.data.state != 'STOPPED' || timer.data.value == 0}">
+				<div class="btn navbar-btn btn-warning" ng-click="timer.reset(); resetMidlleTimer();" ng-class="{disabled: timer.data.state != 'STOPPED' || timer.data.value == 0}">
 					<span class="glyphicon glyphicon-stop"></span> <span class="hidden-xs">Zerar</span>
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 					<strong>{{scorings.total === null ? 'Invalid' : scorings.total}}</strong>
 				</div>
 
-				<div class="btn btn-danger" ng-click="newScore(null, true);" ng-class="{disabled: timer.data.state == 'RUNNING'}">
+				<div class="btn btn-danger" ng-click="resetMidlleTimer(); newScore(null, true);" ng-class="{disabled: timer.data.state == 'RUNNING'}">
 					Zerar<span class="hidden-xs"></span>
 				</div>
 

@@ -165,6 +165,13 @@
 				$scope.middleTimer.running = false;
 			};
 
+			$scope.resetMidlleTimer = function () {
+				$scope.middleTimer.running = false;
+				$scope.middleTimer.startTick = null;
+				$scope.middleTimer.value = 0;
+				$scope.middleTimer.maxTime = $scope.scorer.model.presentation.min_presentation_time * 10;
+			}
+
 			// Atualiza automaticamente o valor com base no cronômetro principal
 			$scope.$watch('timer.data.value', function (newVal) {
 				if ($scope.middleTimer.running && $scope.middleTimer.startTick !== null) {
